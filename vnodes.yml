@@ -1,0 +1,2 @@
+vanilla-host: "--mem 2G --disk 5G 20.04"
+# database: "--mem 1G --disk 5G 20.04"

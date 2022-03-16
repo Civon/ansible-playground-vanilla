@@ -1,0 +1,26 @@
+---
+- hosts: main
+  become: yes
+  tasks:
+    - name: Update apt cache and make sure {{ item }} is installed
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+      loop:
+        - vim
+        - curl
+        - docker
+        - git
+
+    - name: Check if Homebrew is already installed
+      stat:
+        path: /usr/local/bin/brew
+      register: b
+
+    - name: Install Homebrew
+      shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      when: not b.stat.exists
+
+    - name:
+      shell: brew install composer && composer self-update --1
+

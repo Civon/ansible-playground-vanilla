@@ -1,0 +1,8 @@
+users:
+  - default
+  - name: admin
+    sudo:  ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - {{ public_key }}
+      # Note line 6, in which the contents of a variable named “public_key” will replace the “{{ public_key }}” block when a file is created from the template.
+      
